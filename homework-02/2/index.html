@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let action = prompt('Какцю операцию вы хотите выполнить? (add - сложение; sub - вычитание; mult - умнржение; div - деление)');
+        let a = prompt('Введите первое число');
+        let b = prompt('Введите второе число');
+        if (action === 'add') {
+            alert(`${a} + ${b} = ` + (+a + +b));
+        } else if (action === 'sub') {
+            alert(`${a} - ${b} = ` + (+a - +b));
+        } else if (action === 'mult') {
+            alert(`${a} * ${b} = ` + (+a * +b));
+        } else if (action === 'div') {
+            alert(`${a} / ${b} = ` + (+a / +b));
+        }
+    </script>
+</body>
+</html>
