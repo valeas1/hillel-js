@@ -8,7 +8,7 @@
 </head>
 <body>
     <script>
-        let numOrStr = +prompt('input number or string');
+        let numOrStr = prompt('input number or string');
         console.log(numOrStr);
 
         // if(numOrStr === null) {
@@ -20,14 +20,14 @@
         // } else {
         //     console.log('OK!');
         // }
-        switch(numOrStr) {
-            case null:
+        switch(+numOrStr || numOrStr === null || numOrStr.trim() === '' || isNaN(+numOrStr)) {
+            case numOrStr === null:
                 console.log('вы отменили');
                 break;
-            case '':
+            case numOrStr.trim() === '':
                 console.log('Empty String');
-                break;
-            case NaN:
+                break;  
+            case isNaN(+numOrStr):
                 console.log('Number is Ba_NaN');
                 break;
             default:
