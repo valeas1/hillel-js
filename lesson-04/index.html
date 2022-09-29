@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Задача на подумати. Якщо вирішите добре, якщо ні завтра розберемо.
+        // function random(min, max, exclude);
+
+        // random(1, 100, [3]) // value from 1 to 100 but not include 3, 33, 43, 93
+        // random(1, 100, [3,6]) // value from 1 to 100 but not include 3, 6,66,33, 43,46
+        // random(1, 100) // value from 1 to 100
+        function random(min, max, exclude) {
+            let rNum = Math.floor(Math.random() * (max + 1));
+            if(rNum === 0) return random(min, max, exclude);
+            if(min < 0) {
+                let coin = Math.floor(Math.random() * 3)
+                if(coin === 0) {
+                    return random(min, max, exclude);
+                } else if (coin === 1) {
+                    rNum = rNum * 1;
+                } else {
+                    rNum = rNum * (-1);
+                }
+            }
+            let exception = Array.from(String(rNum));
+            let bool = false;
+            if(exclude) {
+                for (let i = 0; i < exception.length; i++) {
+                    for ( let j = 0; j < exclude.length; j++) {
+                        if(Number(exception[i]) === exclude[j]) {
+                            bool = true;
+                        }
+                    }
+                }
+            }
+            if(bool === true) return random(min, max, exclude);
+            if(rNum < min) {
+                return random(min, max, exclude);
+            } else {
+                return rNum;
+            }
+        }
+        console.log(random(-32, 100,));
+        for(let i = 0; i < 1000; i++) {
+            document.write(' ' + random(1, 100, [0, 2, 3, 4, 6]) + ' ,');
+        }
+    </script>
+</body>
+</html>

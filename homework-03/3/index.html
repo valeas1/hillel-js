@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log('Цикл 1')
+        let i = 20;
+        for (; i<= 30;) {
+            console.log(i);
+            i = i + 0.5;
+        }
+        console.log('Цикл 2')
+        let j = 10;
+        for (; j <= 100;) {
+            console.log(j * 27);
+            j = j + 10;
+        }
+        console.log('Цикл 3')
+        let integer = 330;
+        for (let i = 1; i <= 100; i++) {
+            if (i * i < integer) console.log(i);
+        }
+        console.log('Цикл 4')
+        let primeNumber = 11;
+        let divs = 0;
+        for (let i = 1; i <= primeNumber; i++) {
+            if (primeNumber % i === 0) {
+                divs++;
+            }
+            if (i === primeNumber) {
+                if (divs > 2) {
+                    console.log(`Число ${primeNumber} не является простым`);
+                } else if (divs === 2){
+                    console.log(`Число ${primeNumber} является простым`);
+                }
+            }
+        }
+        
+        console.log('Цикл 5');
+        let sameNum = 243;
+        let multNum = 1;
+        for (let i = 1; multNum < sameNum; i++) {
+            multNum = multNum * 3;
+            if (multNum === sameNum) {
+                console.log(`Можно получить ${sameNum} это 3 в степени ${i}`);
+            } else if (multNum > sameNum){
+                console.log(`Нельзя получить ${sameNum} возводя 3 в n степень`);
+            }
+        }
+    </script>
+</body>
+</html>

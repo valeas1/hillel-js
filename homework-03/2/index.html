@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.write('Цикл 1 : ')
+        for (let i = 10; i <= 20; i++) {
+            if (i < 20) {
+                document.write(i + ', ');
+            } else {
+                document.write(i);
+            }
+        }
+        console.log('Цикл 2');
+        for (let i = 10; i <= 20; i++) {
+            console.log(i * i);
+        }
+        console.log('Цикл 3');
+        for (let i = 1; i <= 10; i++) {
+            console.log(i * 7);
+        }
+        console.log('Цикл 4');
+        let sum = 0;
+        for (let i = 1; i <= 15; i++) {
+            sum = sum + i;
+            if (i === 15) console.log(sum);
+        }
+        console.log('Цикл 5');
+        let mult = 1;
+        for (let i = 15; i <= 35; i++) {
+            mult = mult * i;
+            if (i === 35) console.log(mult);
+        }
+        console.log('Цикл 6');
+        let average = 0;
+        for (let i = 0; i <= 500; i++) {
+            average = average + i;
+            if (i === 500) console.log(average / 500);
+        }
+        console.log('Цикл 7');
+        let evenNum = 0;
+        for (let i = 30; i <= 80; i++) {
+            if (i % 2 === 0) evenNum = evenNum + i;
+            if (i === 80) console.log(evenNum);
+        }
+        console.log('Цикл 8');
+        for (let i = 100; i <= 200; i++) {
+            if(i % 3 === 0) console.log(i);
+        }
+        console.log('Цикл 9, 10 и 11');
+        let naturalNum = 112;
+        let evenDiv = 0;
+        let sumEvenDiv = 0;
+        for (let i = 1; i <= naturalNum; i++) {
+            if (naturalNum % i === 0) {
+                if (i % 2 === 0) {
+                    evenDiv++;
+                    sumEvenDiv = sumEvenDiv + i;
+                }
+                console.log(i);
+            };
+            if (i === naturalNum) {
+                console.log(`${naturalNum} имеет ${evenDiv} четных делителей`);
+                console.log(`Сумма его делителей четных ${sumEvenDiv}`);
+            }
+        }
+        console.log('Цикл 12');
+        for (let i = 1; i <= 10; i++) {
+            for (let j = 1; j <= 10; j++) {
+                console.log(`${i} * ${j} = ` + i * j);
+            }
+        }
+    </script>
+</body>
+</html>
