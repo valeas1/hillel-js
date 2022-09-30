@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [16,-37,54,-4,72,-56,47,4,-16,25,-37,46,4,-51,27,-63,4,-54,76,-4,12,-35,4,47];
+        // Найти сумму и количество положительных элементов.
+        let positive = 0;
+        arr.forEach(el => el > 0 ? positive++ : positive = positive);
+        console.log('Сумма всех положительных чисел: ' +  arr.reduce((a, b) => (b > 0) ? a + b : a + 0, 0) + `, количество положительный элементов ${positive}`);
+        // Найти минимальный элемент массива и его порядковый номер.
+        const findSome = function (arr, find) {
+            return find(arr);
+        }
+        const findMin = function (arr) {
+            let min = arr[0];
+            let index = 0;
+            for (let i = 0; i < arr.length; i++) {
+                if(min > arr[i]) {
+                    min = arr[i];
+                    index = i;
+                }
+            }
+            return `Минимальный элемент в масиве ${min}, его индекс: ${index}`
+        }
+        console.log(findSome(arr, findMin));
+        // Найти максимальный элемент массива и его порядковый номер.
+        const findMax = function (arr) {
+            let max = arr[0];
+            let index = 0;
+            for (let i = 0; i < arr.length; i++) {
+                if(max < arr[i]) {
+                    max = arr[i];
+                    index = i;
+                }
+            }
+            return `Максимальный элемент в масиве ${max}, его индекс: ${index}`
+        }
+        console.log(findSome(arr, findMax));
+        // Определить количество отрицательных элементов.
+        let negative = 0;
+        arr.forEach(el => el < 0 ? negative++ : negative = negative);
+        console.log(`Количество отрицательный элементов: ${negative}`);
+        // Найти количество нечетных положительных элементов.
+        const findNotOddPositive = function(arr) {
+            let notOdd = 0;
+            arr.forEach(el => el > 0 && el % 2 !== 0 ? notOdd++ : notOdd = notOdd);
+            return `Количество нечетных положительных элементов ${notOdd}`;
+        }
+        console.log(findSome(arr, findNotOddPositive));
+        // Найти количество четных положительных элементов.
+        const findOddPositive = function(arr) {
+            let odd = 0;
+            arr.forEach(el => el > 0 && el % 2 === 0 ? odd++ : odd = odd);
+            return `Количество нечетных положительных элементов ${odd}`;
+        }
+        console.log(findSome(arr, findOddPositive));
+        // Найти сумму четных положительных элементов.
+        const findSumOddPositive = function (arr) {
+            let sum = 0;
+            arr.forEach(el => el > 0 && el % 2 === 0 ? sum = sum + el : sum = sum);
+            return `Сумма четных положительных элементов ${sum}`;
+        }
+        console.log(findSome(arr, findSumOddPositive));
+        // Найти сумму нечетных положительных элементов.
+        const findSumNotOddPositive = function (arr) {
+            let sum = 0;
+            arr.forEach(el => el > 0 && el % 2 !== 0 ? sum = sum + el : sum = sum);
+            return `Сумма нечетных положительных элементов ${sum}`;
+        }
+        console.log(findSome(arr, findSumNotOddPositive));
+        // Найти произведение положительных элементов.
+        const findMultPositive = function (arr) {
+            let mult = 1;
+            arr.forEach(el => el > 0 ? mult = mult * el : mult = mult);
+            return `Произведение положительных элементов ${mult}`;
+        }
+        console.log(findSome(arr, findMultPositive));
+        // Найти наибольший среди элементов массива, остальные обнулить.
+        const findMaxAndZero = function (arr) {
+            let max = arr[0];
+            let index = 0;
+            for (let i = 0; i < arr.length; i++) {
+                if(max < arr[i]) {
+                    max = arr[i];
+                    index = i;
+                }
+            }
+            for (let i = 0; i < arr.length; i++) {
+                if (i !== index) arr[i] = 0;
+            }
+            return arr;
+        }
+        console.log(findSome(arr, findMaxAndZero));
+    </script>
+</body>
+</html>
