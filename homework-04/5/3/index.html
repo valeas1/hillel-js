@@ -7,6 +7,22 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <script>
+        function makeArr (lengthMainArr, lengthOtherArrs, ...args){
+            let arr = Array();
+            let count = 0;
+            for (let i = 0; i < lengthMainArr; i++){
+                if (count === args.length) break;
+                for (let j = 0; j < lengthOtherArrs; j++) {
+                    if (args[count] === undefined) break;
+                    if (j === 0) arr.push(Array());
+                    arr[i].push(args[count]);
+                    count++;
+                }
+            }
+            return arr;
+        }
+        console.log(makeArr(4, 3, 123,123,123,234,345,6547, 24, 1,45,45));
+    </script>
 </body>
 </html>
