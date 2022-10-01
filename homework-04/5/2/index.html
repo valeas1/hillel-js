@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = prompt('Выберете математическую оперцию: +, -, *, /, %, ^ (степень)');
+        let b = +prompt('Введите первое число');
+        let c = +prompt('Введите второе число');
+        function doMath (x, znak, y) {
+            switch(znak) {
+                case '+':
+                    return x + y;
+                    break;
+                case '-':
+                    return x - y;
+                    break;
+                case '/':
+                    return x / y;
+                    break;
+                case '*':
+                    return x * y;
+                    break;
+                case 'ˆ':
+                    return x ** y;
+                    break;
+                case '%':
+                    return x % y;
+                    break;
+                default:
+                    return 'Что-то пошло не так';
+                    break;
+            }
+        }
+        console.log(doMath(b, a, c));
+    </script>
+</body>
+</html>
