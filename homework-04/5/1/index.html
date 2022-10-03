@@ -13,8 +13,7 @@
             let sum = 0;
             let numbs = 0;
             arr.forEach(function (el) {
-                if(typeof(el) === 'number' && isNaN(el) !== true) {
-                    console.log(typeof(el));
+                if(typeof(el) === 'number' && !isNaN(el)) {
                     sum = sum + el;
                     numbs++;
                 }

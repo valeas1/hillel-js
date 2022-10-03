@@ -49,7 +49,7 @@
         // Найти количество нечетных положительных элементов.
         const findNotOddPositive = function(arr) {
             let notOdd = 0;
-            arr.forEach(el => el > 0 && el % 2 !== 0 ? notOdd++ : notOdd = notOdd);
+            arr.forEach(el => el > 0 && el % 2 !== 0 ? notOdd++ : null);
             return `Количество нечетных положительных элементов ${notOdd}`;
         }
         console.log(findSome(arr, findNotOddPositive));
