@@ -3,7 +3,6 @@ class Human {
         this.firstName = name.split(' ')[0];
         this.lastName = name.split(' ')[1];
         this.age = age;
-        this.job;
         if(age < 14) {
             this.job = 'it is too early'
         } else {
@@ -24,7 +23,7 @@ class Car {
     #owner;
     constructor (brand, model, year, owner) {
         this.brand = brand;
-        if (owner === undefined) {
+        if (!owner) {
             this.#owner = 'Shop';
         } else {
             this.#owner = owner;

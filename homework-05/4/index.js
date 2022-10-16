@@ -35,9 +35,12 @@ class Student {
         }
         return this;
     }
+    getRatio() {
+        return (this.timesSheets.map(el => +el).reduce((a, b) => a + b) / this.timesSheets.filter(el => el !== undefined).length).toFixed(2);
+    }
     summary() {
         let gpa = this.getGpa();
-        let ratio = this.timesSheets.map(el => +el).reduce((a, b) => a + b) / this.timesSheets.filter(el => el !== undefined).length;
+        let ratio = this.getRatio();
         console.log(gpa);
         console.log(ratio);
         if (gpa >= 90 && ratio >= 0.9) {
