@@ -20,6 +20,10 @@ class CoffeeRecept {
     get coast(){
       return this.#coast;
     }
+
+    divCoast (num) {
+        this.#coast = this.#coast / num;
+    }
   
     getSugar(){
       return this.#sugar;
@@ -57,6 +61,7 @@ class CoffeeRecept {
 //   console.log(espresso.getInfo());
   
   class AmericanoRecept extends CoffeeRecept {
+
     constructor(water = 0){
       super();
       this.cookingEspresso();
@@ -118,39 +123,45 @@ class CoffeeRecept {
   }
   let dlatte = new DoubleLatteRecept(50);
   console.log(dlatte);
-//   console.log(dlatte.getInfo());
+  console.log(dlatte.getInfo());
   
   
 class Glass {
-    #volumeGlass;
-    constructor (size, {volume, ...prop}) {
+    #volume;
+    constructor (size, obj) {
+        this.size = size;
         if (size === 'small') {
-            this.#volumeGlass = 100;
+            this.#volume = 100;
         } else if (size === 'medium') {
-            this.#volumeGlass = 250;
+            this.#volume = 250;
         } else if (size === 'large') {
-            this.#volumeGlass = 500
+            this.#volume = 500
         }
-        if (volume > this.#volumeGlass) {
+        if (obj.volume > this.#volume) {
             console.log('Sorry, glass is too small');
         } else {
-            this.drink = {
-                valume: volume,
-                ...prop
-            }
+            this.drink = obj;
         }
     }
     divDrink() {
-        let drinkOne = {};
-        let drinkTwo = {};
+
+        let drinkOne = new this.drink.constructor(this.drink.milk);
+        let drinkTwo = new this.drink.constructor(this.drink.milk);
+
         for (let i = 0; i < Object.keys(this.drink).length; i++) {
-            drinkOne[Object.keys(this.drink)[i]] = this.drink[Object.keys(this.drink)[i]]/2;
-            drinkTwo[Object.keys(this.drink)[i]] = this.drink[Object.keys(this.drink)[i]]/2;
+          drinkOne[Object.keys(this.drink)[i]] = this.drink[Object.keys(this.drink)[i]]/2;
+          drinkTwo[Object.keys(this.drink)[i]] = this.drink[Object.keys(this.drink)[i]]/2;
         }
-        return [drinkOne, drinkTwo];
+
+        drinkOne.divCoast(2);
+        drinkTwo.divCoast(2);
+
+        return [new this.constructor(this.size, drinkOne), new this.constructor(this.size, drinkTwo)];
     }
 }
 let glass = new Glass('small', dlatte);
 console.log(glass);
-console.log(glass.divDrink());
-
+let otherDrink = glass.divDrink();
+otherDrink[0].drink.addSugar()
+otherDrink[0].drink.cookingEspresso();
+console.log(otherDrink[0].drink.getInfo());
