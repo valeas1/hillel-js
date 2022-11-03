@@ -1,30 +1,26 @@
 (()=>{
-    (()=> {
-        let newTask = document.createElement('div');
-        newTask.classList.add('new-task');
-        let newTaskInput = document.createElement('input');
-        newTaskInput.classList.add('new-task__input');
-        newTaskInput.placeholder = 'Enter new task!';
-        let newTaskBtn = document.createElement('input');
-        newTaskBtn.classList.add('new-task__btn');
-        newTaskBtn.type = 'button';
-        newTaskBtn.value = 'Add!'
-        let clearAllABtn = document.createElement('input');
-        clearAllABtn.type = 'button';
-        clearAllABtn.value = 'Clear all!';
-        clearAllABtn.addEventListener('click', cleanAllTask);
-        newTask.append(newTaskInput, newTaskBtn,clearAllABtn);
-        let taskContainer = document.createElement('div');
-        taskContainer.classList.add('task-conteiner');
-        let taskList = document.createElement('ul');
-        taskList.classList.add('task-list');
-        taskContainer.append(taskList);
-        document.body.prepend(newTask, taskContainer);
-        addStyle();
-    })()
-    const taskInput = document.querySelector('.new-task__input');
-    const taskBtn = document.querySelector('.new-task__btn');
-    const taskList = document.querySelector('.task-list');
+    let newTask = document.createElement('div');
+    newTask.classList.add('new-task');
+    let taskInput = document.createElement('input');
+    taskInput.classList.add('new-task__input');
+    taskInput.placeholder = 'Enter new task!';
+    let taskBtn = document.createElement('input');
+    taskBtn.classList.add('new-task__btn');
+    taskBtn.type = 'button';
+    taskBtn.value = 'Add!'
+    let clearAllABtn = document.createElement('input');
+    clearAllABtn.type = 'button';
+    clearAllABtn.value = 'Clear all!';
+    clearAllABtn.addEventListener('click', cleanAllTask);
+    newTask.append(taskInput, taskBtn,clearAllABtn);
+    let taskContainer = document.createElement('div');
+    taskContainer.classList.add('task-conteiner');
+    let taskList = document.createElement('ul');
+    taskList.classList.add('task-list');
+    taskContainer.append(taskList);
+    document.body.prepend(newTask, taskContainer);
+    addStyle();
+
     function addTask () {
         let li = document.createElement('li');
         let span = document.createElement('span');
@@ -102,29 +98,9 @@
         taskList.innerHTML = '';
     }
     function addStyle () {
-        let tagStyle = document.createElement('style');
-        tagStyle.innerHTML = `.new-task {
-            width: 80vw;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            padding-top: 20px;
-            padding-bottom: 40px;
-            border-bottom: 2px solid black;
-            gap: 5px;
-        }
-        .task-list > li {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 5px;
-            margin-top: 5px;
-        }
-        input:checked + span {
-            text-decoration: line-through;
-        }
-        input:checked ~ [name = 'edit'] {
-            display: none;
-        }`;
-        document.head.append(tagStyle);
+        let tagLink = document.createElement('link');
+        tagLink.setAttribute('href', 'style.css')
+        tagLink.setAttribute('rel', 'stylesheet');
+        document.head.append(tagLink);
     }
 })()
