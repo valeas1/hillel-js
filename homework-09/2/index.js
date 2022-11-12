@@ -127,6 +127,7 @@ function cancelEdit(e) {
     perent.children[0].style.display = 'block';
     perent.children[1].style.display = 'block';
     perent.append(...createBtns('task'));
+    addTasksToLocalStorage();
 }
 
 function okEdit(e) {
