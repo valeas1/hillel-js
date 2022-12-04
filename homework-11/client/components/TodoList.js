@@ -24,15 +24,16 @@ export default class TodoList {
         this.state = state;
     }
 
-    async render() {
+    render() {
+        if (!this.state.getState()) {
+            return;
+        }
         const conteiner = document.querySelector(`#${this.id}`);
         conteiner.innerHTML = '';
-        const state = State.getInstance();
-        await state.setState();
-
-        const controllers = new Controller();
 
         const list = new List();
+
+        const controllers = new Controller(list);
 
         conteiner.append(...controllers.createControlElements(), list.render());
     }

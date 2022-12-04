@@ -10,7 +10,6 @@ let TODOS = [
         id: 1,
         title: 'delectus aut autem',
         completed: false,
-        editable: false,
     },
     {
         userId: 1,
