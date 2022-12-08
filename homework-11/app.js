@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-
 app.use(express.json());
 
 let TODOS = [
@@ -129,6 +128,7 @@ let TODOS = [
 
 //GET
 app.get('/api/todos/', (req, res) => {
+    // console.log(req);
     res.status(200).json(TODOS);
 });
 app.get('/api/todos/:id', (req, res) => {
@@ -180,4 +180,4 @@ app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'index.html'));
 });
 
-app.listen(3000, () => console.log('Server had been started'));
+app.listen(3000, '192.168.0.101', () => console.log('Server had been started'));

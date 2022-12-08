@@ -20,72 +20,36 @@ export default class State {
     }
 
     async setState() {
-        const response = await Services.requestServer('/api/todos/');
+        const response = await Services.getTodos();
+
         this.#state = response;
 
         this.rerender();
     }
+
     async addTaskToState(task) {
-        let response = await Services.requestServer('/api/todos/', 'POST', task);
+        let response = await Services.addTask(task);
         return response;
-        // this.setState();
     }
+
     async removeTaskFromState(id) {
-        let response = await Services.requestServer(`/api/todos/${id}`, 'DELETE');
+        let response = await Services.removeTask(id);
     }
 
     async updateTaskInState(id, task) {
-        return await Services.requestServer(`/api/todos/${id}`, 'PATCH', task);
+        return await Services.updateTask(id, task);
     }
 
     async removeAllTaskFromState() {
-        return await Services.requestServer(`/api/todos`, 'DELETE', {}, 'true');
+        return await Services.cleanTodos();
     }
 
-    //utilits
-    // async requestServer(url, methods = 'GET', data = {}, clear = 'false') {
-    //     let state;
-    //     if (methods !== 'GET') {
-    //         await fetch(url, {
-    //             method: methods,
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 clearall: clear,
-    //             },
-    //             body: JSON.stringify(data),
-    //         })
-    //             .then((response) => {
-    //                 if (response.ok) {
-    //                     return response.json();
-    //                 }
-    //                 throw new Error('Something went wrong');
-    //             })
-    //             .then((res) => (state = res))
-    //             .catch((error) => alert(`${error.message}`));
-    //     } else {
-    //         await fetch(url, {
-    //             method: methods,
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 clearall: clear,
-    //             },
-    //         })
-    //             .then((response) => {
-    //                 if (response.ok) {
-    //                     return response.json();
-    //                 }
-    //                 throw new Error('Something went wrong');
-    //             })
-    //             .then((res) => (state = res))
-    //             .catch((error) => alert(`${error.message}`));
-    //     }
-    //     return state;
-    // }
     findIndexTask() {
         return this.#state.findIndex((item) => {
             return item.id == event.target.parentElement.dataset.id;
         });
     }
+
     getState() {
         return this.#state;
     }

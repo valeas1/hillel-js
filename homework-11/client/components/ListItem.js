@@ -2,11 +2,11 @@ import State from './State.js';
 import Services from './Services.js';
 
 export default class ListItem {
-    constructor(stateItem) {
-        this.title = stateItem.title;
-        this.completed = stateItem.completed;
-        this.editable = stateItem.editable;
-        this.id = stateItem.id;
+    constructor(item) {
+        this.title = item.title;
+        this.completed = item.completed;
+        this.editable = item.editable;
+        this.id = item.id;
 
         this.state = State.getInstance();
 
@@ -55,8 +55,8 @@ export default class ListItem {
         await response.then((res) => (this.completed = res.completed));
     }
     async showDatailsTask(event) {
-        let id = event.target.parentElement.dataset.id;
-        let response = Services.requestServer(`api/todos/${id}`);
+        let response = Services.getDefiniteTodos(this.id);
+
         response.then((res) => {
             this.renderDivDetails(res, event);
         });

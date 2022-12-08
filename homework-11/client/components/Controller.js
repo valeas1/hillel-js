@@ -15,11 +15,13 @@ export default class Controller {
 
         this.list = list;
         this.listRef = list.toDoListRef;
+
+        this.inputRef = document.createElement('input');
     }
 
     //event
     addTaskToState(event) {
-        if (!event.target.previousElementSibling.value.trim()) return;
+        if (!this.inputRef.value.trim()) return;
         let task = {
             title: event.target.previousElementSibling.value,
         };
@@ -61,9 +63,9 @@ export default class Controller {
     }
 
     //create
-    createControlElements() {
-        const input = document.createElement('input');
-        input.placeholder = 'Input your task';
+    render() {
+        // const input = document.createElement('input');
+        this.inputRef.placeholder = 'Input your task';
 
         const addTaskButton = document.createElement('button');
         addTaskButton.innerText = 'Add';
@@ -105,6 +107,6 @@ export default class Controller {
 
         document.body.addEventListener('click', this.removeDivDetails);
 
-        return [input, addTaskButton, clearAllButton, searchInput, searchButton, div];
+        return [this.inputRef, addTaskButton, clearAllButton, searchInput, searchButton, div];
     }
 }

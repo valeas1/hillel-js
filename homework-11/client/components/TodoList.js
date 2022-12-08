@@ -35,6 +35,6 @@ export default class TodoList {
 
         const controllers = new Controller(list);
 
-        conteiner.append(...controllers.createControlElements(), list.render());
+        conteiner.append(...controllers.render(), list.render());
     }
 }
