@@ -68,7 +68,13 @@ export default class Services {
     static async getDefiniteTodos(id) {
         let result;
 
-        await fetch(`${API_URL}/api/todos/${id}`)
+        await fetch(`${API_URL}/api/todos/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                api_token: localStorage.getItem('api_token'),
+            },
+        })
             .then((response) => {
                 if (response.ok) {
                     return response.json();
@@ -88,6 +94,7 @@ export default class Services {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                api_token: localStorage.getItem('api_token'),
             },
             body: JSON.stringify(task),
         })
@@ -108,6 +115,10 @@ export default class Services {
 
         await fetch(`${API_URL}/api/todos/${id}`, {
             method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                api_token: localStorage.getItem('api_token'),
+            },
         })
             .then((response) => {
                 if (response.ok) {
@@ -128,6 +139,7 @@ export default class Services {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
+                api_token: localStorage.getItem('api_token'),
                 clearall: true,
             },
         })
@@ -150,6 +162,7 @@ export default class Services {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
+                api_token: localStorage.getItem('api_token'),
             },
             body: JSON.stringify(task),
         })
