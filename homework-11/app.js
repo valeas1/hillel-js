@@ -10,21 +10,36 @@ app.use(express.json());
 app.get('/api/todos/', (req, res) => {
     let todos;
 
+    let api_token = req.headers['api_token'];
+
     try {
-        const data = fs.readFileSync('TODOS.txt', 'utf8');
-        todos = JSON.parse(data);
+        if (api_token === 'null') {
+            api_token = new Date().getTime();
+
+            const todosFile = fs.writeFileSync(path.resolve(__dirname, 'userdata', `${api_token}`), '[]', 'utf-8');
+
+            const data = fs.readFileSync(path.resolve(__dirname, 'userdata', `${api_token}`), 'utf-8');
+
+            todos = JSON.parse(data);
+        } else {
+            const dataFile = fs.readFileSync(path.resolve(__dirname, 'userdata', `${api_token}`), 'utf8');
+
+            todos = JSON.parse(dataFile);
+        }
     } catch (err) {
         console.error(err);
     }
 
-    res.status(200).json(todos);
+    res.status(200).json({ todos, api_token });
 });
 
 app.get('/api/todos/:id', (req, res) => {
     let todos;
 
+    let api_token = req.headers['api_token'];
+
     try {
-        const data = fs.readFileSync('TODOS.txt', 'utf8');
+        const data = fs.readFileSync(path.resolve(__dirname, 'userdata', `${api_token}`), 'utf8');
 
         todos = JSON.parse(data);
 
@@ -47,16 +62,18 @@ app.post('/api/todos/', (req, res) => {
         res.status(204).json({ message: 'Request doesnt have title' });
     }
 
-    const todo = { ...req.body, id: new Date().getTime(), completed: false, editable: false, userId: 1 };
+    let api_token = req.headers['api_token'];
+
+    const todo = { ...req.body, id: new Date().getTime(), completed: false, editable: false };
 
     let todos;
 
     try {
-        let data = fs.readFileSync('TODOS.txt', 'utf8');
+        let data = fs.readFileSync(path.resolve(__dirname, 'userdata', `${api_token}`), 'utf8');
         todos = JSON.parse(data);
         todos.push(todo);
         try {
-            fs.writeFileSync('TODOS.txt', JSON.stringify(todos), 'utf8');
+            fs.writeFileSync(path.resolve(__dirname, 'userdata', `${api_token}`), JSON.stringify(todos), 'utf8');
         } catch {
             console.error(err);
         }
@@ -72,8 +89,10 @@ app.post('/api/todos/', (req, res) => {
 app.delete('/api/todos/:id', (req, res) => {
     let todos;
 
+    let api_token = req.headers['api_token'];
+
     try {
-        const data = fs.readFileSync('TODOS.txt', 'utf8');
+        const data = fs.readFileSync(path.resolve(__dirname, 'userdata', `${api_token}`), 'utf8');
 
         todos = JSON.parse(data);
 
@@ -84,7 +103,7 @@ app.delete('/api/todos/:id', (req, res) => {
         }
 
         try {
-            fs.writeFileSync('TODOS.txt', JSON.stringify(todos), 'utf8');
+            fs.writeFileSync(path.resolve(__dirname, 'userdata', `${api_token}`), JSON.stringify(todos), 'utf8');
         } catch {
             console.error(err);
         }
@@ -96,9 +115,11 @@ app.delete('/api/todos/:id', (req, res) => {
 });
 
 app.delete('/api/todos/', (req, res) => {
+    let api_token = req.headers['api_token'];
+
     if (req.headers.clearall === 'true') {
         try {
-            fs.writeFileSync('TODOS.txt', '[]', 'utf8');
+            fs.writeFileSync(path.resolve(__dirname, 'userdata', `${api_token}`), '[]', 'utf8');
         } catch {
             console.error(err);
         }
@@ -114,8 +135,10 @@ app.delete('/api/todos/', (req, res) => {
 app.patch('/api/todos/:id', (req, res) => {
     let todos;
 
+    let api_token = req.headers['api_token'];
+
     try {
-        let data = fs.readFileSync('TODOS.txt', 'utf8');
+        let data = fs.readFileSync(path.resolve(__dirname, 'userdata', `${api_token}`), 'utf8');
 
         todos = JSON.parse(data);
 
@@ -130,7 +153,7 @@ app.patch('/api/todos/:id', (req, res) => {
         }
 
         try {
-            fs.writeFileSync('TODOS.txt', JSON.stringify(todos), 'utf8');
+            fs.writeFileSync(path.resolve(__dirname, 'userdata', `${api_token}`), JSON.stringify(todos), 'utf8');
         } catch {
             console.error(err);
         }
@@ -147,4 +170,5 @@ app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'index.html'));
 });
 
-app.listen(3000, '192.168.0.101', () => console.log('Server had been started'));
+// app.listen(3000, '192.168.0.101', () => console.log('Server had been started'));
+app.listen(3000, () => console.log('Server had been started'));
