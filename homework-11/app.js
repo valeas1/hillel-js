@@ -10,14 +10,27 @@ app.use(express.json());
 app.get('/api/todos/', (req, res) => {
     let todos;
 
+    let api_token = req.headers['api_token'];
+
     try {
-        const data = fs.readFileSync('TODOS.txt', 'utf8');
-        todos = JSON.parse(data);
+        if (api_token === 'null') {
+            api_token = new Date().getTime();
+
+            const todosFile = fs.writeFileSync(`${api_token}.txt`, '[]', 'utf-8');
+
+            const data = fs.readFileSync(`${api_token}.txt`, 'utf-8');
+
+            todos = JSON.parse(data);
+        } else {
+            const dataFile = fs.readFileSync(`${api_token}.txt`, 'utf8');
+
+            todos = JSON.parse(dataFile);
+        }
     } catch (err) {
         console.error(err);
     }
 
-    res.status(200).json(todos);
+    res.status(200).json({ todos, api_token });
 });
 
 app.get('/api/todos/:id', (req, res) => {
@@ -147,4 +160,5 @@ app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'index.html'));
 });
 
-app.listen(3000, '192.168.0.101', () => console.log('Server had been started'));
+// app.listen(3000, '192.168.0.101', () => console.log('Server had been started'));
+app.listen(3000, () => console.log('Server had been started'));

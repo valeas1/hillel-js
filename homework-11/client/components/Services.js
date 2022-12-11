@@ -43,14 +43,23 @@ export default class Services {
     static async getTodos() {
         let result;
 
-        await fetch(`${API_URL}/api/todos/`)
+        await fetch(`${API_URL}/api/todos/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                api_token: localStorage.getItem('api_token'),
+            },
+        })
             .then((response) => {
                 if (response.ok) {
                     return response.json();
                 }
                 throw new Error('Something went wrong');
             })
-            .then((res) => (result = res))
+            .then((res) => {
+                result = res.todos;
+                localStorage.setItem('api_token', res['api_token']);
+            })
             .catch((error) => alert(`${error.message}`));
 
         return result;
