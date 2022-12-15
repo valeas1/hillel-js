@@ -1,0 +1,12 @@
+.sidebar__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar__menu-link {
+    color: black;
+}
+.sidebar__menu-link:hover {
+    color: blueviolet;
+}
