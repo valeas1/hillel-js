@@ -26,7 +26,7 @@ class App extends React.Component {
             <React.Fragment>
                 <ul>
                     {this.data.map((item, index) => (
-                        <SmileItem smile={item} key={index} />
+                        <SmileItem smileRef={item} key={index} />
                     ))}
                 </ul>
                 <button onClick={this.handleClick}>Show Results</button>

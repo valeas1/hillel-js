@@ -3,19 +3,18 @@ import React from 'react';
 class SmileItem extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { count: props.smile.count };
-        this.data = props.smile;
+        this.state = { count: props.smileRef.count };
     }
 
     handleClick = () => {
         this.setState({ ...this.state, count: this.state.count + 1 });
-        this.data.count = this.state.count;
+        this.props.smileRef.count = this.state.count;
     };
 
     render() {
         return (
             <li>
-                <span>{this.data.smile}</span>
+                <span>{this.props.smileRef.smile}</span>
                 <span>{this.state.count}</span>
                 <input type="button" value="Vote!" onClick={this.handleClick} />
             </li>
