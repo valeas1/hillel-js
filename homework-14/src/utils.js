@@ -5,7 +5,6 @@ export const FOLDER_TYPE = 'FOLDER';
 export const START_PATH = ['/Common7', '/Common7/IDE', '/VC', '/VC/crt'];
 
 export const getComponent = (data, expandedFolders = [], search) => {
-    // console.log(expandedFolders);
     return data.map((item) =>
         item.type === FOLDER_TYPE ? (
             showFolder(search, item.children, expandedFolders) ? (

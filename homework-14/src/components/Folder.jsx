@@ -5,7 +5,6 @@ class Folder extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isOpen: this.isOpenFolder(), path: this.props.expandedFolders.join('') };
-        // console.log(this.props);
     }
 
     handleClick = (e) => {
@@ -14,7 +13,6 @@ class Folder extends React.Component {
     };
 
     isOpenFolder = () => {
-        // console.log(this.props.name, this.props.expandedFolders);
         return this.props.expandedFolders.includes(`/${this.props.name}`);
     };
 
@@ -26,7 +24,6 @@ class Folder extends React.Component {
     };
 
     componentDidUpdate(prevProps, prevState) {
-        // console.log(this.props.name, prevProps.expandedFolders.join('') !== prevState.path);
         if (prevProps.expandedFolders.join('') !== prevState.path) {
             this.setState((state, props) => {
                 return { ...state, isOpen: this.isOpenFolder(), path: props.expandedFolders.join('') };

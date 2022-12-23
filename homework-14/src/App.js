@@ -35,10 +35,6 @@ class App extends React.Component {
         });
     };
 
-    // componentDidMount() {
-    //     this.setState({ ...this.setState });
-    // }
-
     render() {
         return (
             <React.Fragment>
