@@ -19,9 +19,7 @@ class App extends React.Component {
         if (!this.inputRef.current.value.trim()) {
             this.path = [];
             this.search = false;
-            this.forceUpdate(() => {
-                this.setState({ ...this.state });
-            });
+            this.setState({ ...this.state });
             return;
         }
         let filter = this.map.filter((item) => {
@@ -30,9 +28,7 @@ class App extends React.Component {
         });
         this.path = path(filter);
         this.search = true;
-        this.forceUpdate(() => {
-            this.setState({ ...this.state, search: this.inputRef.current.value });
-        });
+        this.setState({ ...this.state, search: this.inputRef.current.value });
     };
 
     render() {

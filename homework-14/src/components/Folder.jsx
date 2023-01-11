@@ -8,7 +8,6 @@ class Folder extends React.Component {
     }
 
     handleClick = (e) => {
-        e.stopPropagation();
         this.setState({ isOpen: !this.state.isOpen });
     };
 
